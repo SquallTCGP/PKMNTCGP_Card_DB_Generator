@@ -45,6 +45,7 @@ SET_PATH = "/sets/{}/"
 PACKS_PATH = "/sets/{}/packs/{}/"
 PROMO_SET_URL = "https://www.pokemon-zone.com/sets/promo-a/"
 ASSETS_BASE_PATH = "assets"
+OUTPUT_DIR = "output"
 
 def get_pack_urls(set_name, expansion_id):
     """Get all pack URLs for a main set"""
@@ -130,6 +131,12 @@ def fetch_cards_from_url(url):
     except Exception as e:
         print(f"Error fetching cards from {url}: {str(e)}")
         return []
+
+
+def ensure_output_directory():
+    """Create output directory if it doesn't exist"""
+    if not os.path.exists(OUTPUT_DIR):
+        os.makedirs(OUTPUT_DIR)
 
 
 def process_set(set_name):
@@ -314,7 +321,8 @@ def process_set(set_name):
                                    key=lambda x: int(x[1]['card_number'].replace('TL', '').replace('P', ''))))
         
         if args.setName:
-            output_file = f"{get_set_initials(set_name)}_Cards_Database.json"
+            ensure_output_directory()
+            output_file = os.path.join(OUTPUT_DIR, f"{get_set_initials(set_name)}_Cards_Database.json")
             with open(output_file, "w", encoding="utf-8") as f:
                 json.dump(sorted_regular, f, indent=4, ensure_ascii=False)
             print(f"Saved regular cards to {output_file}")
@@ -325,7 +333,8 @@ def process_set(set_name):
                                  key=lambda x: int(x[1]['card_number'].replace('TL', '').replace('P', ''))))
         
         if args.setName:
-            output_file = "Promo_Cards_Database.json"
+            ensure_output_directory()
+            output_file = os.path.join(OUTPUT_DIR, "Promo_Cards_Database.json")
             with open(output_file, "w", encoding="utf-8") as f:
                 json.dump(sorted_promo, f, indent=4, ensure_ascii=False)
             print(f"Saved promo cards to {output_file}")
@@ -365,11 +374,15 @@ if __name__ == "__main__":
 
         # Save combined cards
         if all_regular_cards:
-            with open("Full_Cards_Database.json", "w", encoding="utf-8") as f:
+            ensure_output_directory()
+            output_file = os.path.join(OUTPUT_DIR, "Full_Cards_Database.json")
+            with open(output_file, "w", encoding="utf-8") as f:
                 json.dump(all_regular_cards, f, indent=4, ensure_ascii=False)
-            print("\nSaved all regular cards to Full_Cards_Database.json")
+            print(f"\nSaved all regular cards to {output_file}")
 
         if all_promo_cards:
-            with open("TCGP_Promo_Cards_Database.json", "w", encoding="utf-8") as f:
+            ensure_output_directory()
+            output_file = os.path.join(OUTPUT_DIR, "Promo_Cards_Database.json")
+            with open(output_file, "w", encoding="utf-8") as f:
                 json.dump(all_promo_cards, f, indent=4, ensure_ascii=False)
-            print("Saved all promo cards to TCGP_Promo_Cards_Database.json")
+            print(f"Saved all promo cards to {output_file}")

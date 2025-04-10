@@ -13,10 +13,12 @@ Configuration Components:
    Each pack configuration includes:
    - expansion_id: The ID used in URLs and card data
    - packs: Mapping of pack URLs to their suffix identifiers
+   Note: This configuration is regularly updated as new main sets are added to the game.
 
 2. SET_NAME_TO_EXPANSION_ID:
    Maps full set names to their corresponding expansion IDs used in URLs
-   and card data.
+   and card data. This mapping is continuously updated to include new sets
+   and mini-sets as they are released.
 
 3. RARITY_MAP:
    Defines the numerical values for different card rarities, used for

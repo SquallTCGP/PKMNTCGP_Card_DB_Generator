@@ -45,6 +45,11 @@ Created by SquallTCGP
 │   ├── Space-Time Smackdown/
 │   ├── Triumphant Light/
 │   └── ...
+├── output/         # Generated database files
+│   ├── GA_Cards_Database.json
+│   ├── STS_Cards_Database.json
+│   ├── Promo_Cards_Database.json
+│   └── Full_Cards_Database.json
 ```
 
 ## Usage
@@ -68,15 +73,15 @@ python ProcessCards.py
 
 ## Output Files
 
-The script generates the following JSON database files:
+The script generates JSON database files in the `output` directory:
 
 - For individual set processing:
-  - `[SET_INITIALS]_Cards_Database.json` (e.g., `GA_Cards_Database.json`)
-  - `TCGP_Promo_Cards_Database.json` (for promo cards)
+  - `output/[SET_INITIALS]_Cards_Database.json` (e.g., `output/GA_Cards_Database.json`)
+  - `output/Promo_Cards_Database.json` (for promo cards)
 
 - For processing all sets:
-  - `Full_Cards_Database.json` (all regular cards)
-  - `TCGP_Promo_Cards_Database.json` (all promo cards)
+  - `output/Full_Cards_Database.json` (all regular cards)
+  - `output/Promo_Cards_Database.json` (all promo cards)
 
 ## Card Data Structure
 
@@ -114,8 +119,10 @@ Defines pack structures for main sets that have multiple packs:
 }
 ```
 
+Note: Pack configurations are updated regularly as new main sets are added to the game.
+
 ### 2. Set Name to Expansion ID Mapping
-Maps full set names to their expansion IDs used in URLs and card data.
+Maps full set names to their expansion IDs used in URLs and card data. This mapping is continuously updated to include new sets and mini-sets as they are released.
 
 ### 3. Card Rarity System
 
