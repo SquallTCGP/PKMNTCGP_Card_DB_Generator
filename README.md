@@ -84,16 +84,16 @@ Each card entry in the JSON database contains:
 
 ```json
 {
-    "card_number": "123",
-    "card_name": "Pokemon Name",
-    "card_rarity": 1,
-    "card_set": "GA",          // Base set initials or pack-specific (e.g., GAP, STSD)
-    "card_set_name": "Genetic", // Base set name or pack name
-    "card_set_base_name": "Genetic Apex",
-    "expansion_id": "A1",      // Capitalized expansion ID or "Promo-a"
-    "card_desirability": 0,
-    "card_tradable": false,
-    "card_obtainable": true    // Based on rarity and promo status
+    "card_number": "123",                  // Card number
+    "card_name": "Pokemon Name",           // Name of the card
+    "card_rarity": 1,                      // Rarity of the card
+    "card_set": "GA",                      // Base set initials or pack-specific (e.g., GAP, STSD)
+    "card_set_name": "Genetic",            // Base set name or pack name (Short)
+    "card_set_base_name": "Genetic Apex",  // Base set name or pack name (Long)
+    "expansion_id": "A1",                  // Capitalized expansion ID or "Promo-a"
+    "card_desirability": 0,                // Desirability of the card.
+    "card_tradable": false,                // If this card can be traded. Based on rarity and promo status
+    "card_obtainable": true                // If this card can be obtained in Wonderpicks. Based on rarity and promo status
 }
 ```
 
@@ -117,11 +117,30 @@ Defines pack structures for main sets that have multiple packs:
 ### 2. Set Name to Expansion ID Mapping
 Maps full set names to their expansion IDs used in URLs and card data.
 
-### 3. Rarity Mapping
-Defines numerical values for different card rarities, affecting card obtainability:
-- 1-4: Normal cards (obtainable)
-- 5: One Star (obtainable)
-- 6+: Special rarities (not obtainable)
+### 3. Card Rarity System
+
+The TCG uses a diamond-based rarity system with special designations for premium cards:
+
+| Rarity Code | Display        | Trade Status | Wonderpick Status |
+|-------------|---------------|--------------|-------------------|
+| C           | 1 Diamond     | Tradeable    | Available         |
+| U           | 2 Diamonds    | Tradeable    | Available         |
+| R           | 3 Diamonds    | Tradeable    | Available         |
+| RR          | 4 Diamonds    | Tradeable    | Available         |
+| AR          | ⭐            | Tradeable    | Available         |
+| SR          | ⭐⭐          | Untradeable  | Available         |
+| SAR         | 🌈⭐⭐        | Untradeable  | Available         |
+| IM          | ⭐⭐⭐        | Untradeable  | Unavailable       |
+| UR          | 👑            | Untradeable  | Unavailable       |
+| S           | ✨            | Untradeable  | Unavailable       |
+| SSR         | ✨✨          | Untradeable  | Unavailable       |
+| IR          | ✨✨✨        | Untradeable  | Unavailable       |
+
+### Rarity Notes
+- Cards with rarity SR and above cannot be traded
+- Cards with rarity IM and above will not appear in wonderpicks
+- Diamond ratings (C through RR) represent standard obtainable cards
+- Special ratings (AR through IR) represent premium or chase cards 
 
 ## Error Handling
 
@@ -143,3 +162,4 @@ This project is licensed under the Creative Commons Attribution-NonCommercial 4.
 
 - Pokemon TCG data sourced from pokemon-zone.com
 - Created and maintained by SquallTCGP 
+
