@@ -37,7 +37,7 @@ import requests
 from bs4 import BeautifulSoup
 from PIL import Image
 import imagehash
-from config import PACK_CONFIGS, SET_NAME_TO_EXPANSION_ID, RARITY_MAP
+from config import PACK_CONFIGS, SET_NAME_TO_EXPANSION_ID, RARITY_MAP, CURRENT_SET
 
 # Constants
 BASE_URL = "https://www.pokemon-zone.com"
@@ -299,7 +299,7 @@ def process_set(set_name):
                 "card_set_base_name": set_name,
                 "expansion_id": "Promo-a" if is_promo else expansion_id.capitalize(),
                 "card_desirability": 0,
-                "card_tradable": False,
+                "card_tradable": False if is_promo or set_name == CURRENT_SET else (card_rarity not in [6, 7, 8, 9, 10, 11, 12]),
                 "card_obtainable": False if is_promo else (card_rarity not in [8, 9, 10, 11, 12])
             }
 

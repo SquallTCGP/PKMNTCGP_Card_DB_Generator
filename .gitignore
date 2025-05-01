@@ -1,2 +1,4 @@
 /assets
 output/
+internal_use/
+__pycache__/

@@ -71,6 +71,24 @@ python ProcessCards.py --setName "Genetic Apex"
 python ProcessCards.py
 ```
 
+### Update Card Desirability Values
+
+The `UpdateCardsDesirability.py` script allows you to transfer card desirability values from an old database to a new one. This is useful when you've generated a new database with additional cards but want to preserve the desirability values you've manually set in the previous version.
+
+```bash
+# Basic usage - will update new_database.json in place
+python UpdateCardsDesirability.py old_database.json new_database.json
+
+# Specifying an output path to avoid overwriting the original new database
+python UpdateCardsDesirability.py old_database.json new_database.json updated_database.json
+```
+
+Features:
+- Only copies non-zero desirability values (assuming 0 is the default)
+- Preserves all new card entries and other data in the new database
+- Provides a summary of how many values were updated and how many couldn't be found
+- Only updates card_desirability without affecting other card properties
+
 ## Output Files
 
 The script generates JSON database files in the `output` directory:

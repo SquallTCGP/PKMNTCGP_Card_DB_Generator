@@ -23,7 +23,13 @@ Configuration Components:
 3. RARITY_MAP:
    Defines the numerical values for different card rarities, used for
    determining card obtainability and sorting.
+
+4. CURRENT_SET:
+   Identifies the newest set whose cards cannot be traded until a new set is released.
 """
+
+# Current newest set (cards from this set cannot be traded)
+CURRENT_SET = "Celestial Guardians"
 
 # Pack configurations for main sets
 PACK_CONFIGS = {
@@ -41,7 +47,15 @@ PACK_CONFIGS = {
             "dialga-pack": "D",     # Cards exclusive to Dialga pack get STSD suffix
             "palkia-pack": "P"      # Cards exclusive to Palkia pack get STSP suffix
         }
+    },
+    "Celestial Guardians": {
+        "expansion_id": "a3",
+        "packs": {
+            "celestial-guardians-lunala": "L",     # Cards exclusive to Lunala pack get CGL suffix
+            "celestial-guardians-solgaleo": "S"      # Cards exclusive to Solgaleo pack get CGS suffix
+        }
     }
+
 }
 
 # All supported sets
@@ -51,6 +65,7 @@ SET_NAME_TO_EXPANSION_ID = {
     "Space-Time Smackdown": "a2",
     "Triumphant Light": "a2a",
     "Shining Revelry": "a2b",
+    "Celestial Guardians": "a3",
 }
 
 # Rarity Mapping
