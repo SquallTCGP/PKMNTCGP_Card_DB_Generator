@@ -188,3 +188,28 @@ This project is licensed under the Creative Commons Attribution-NonCommercial 4.
 - Pokemon TCG data sourced from pokemon-zone.com
 - Created and maintained by SquallTCGP 
 
+## Utilities
+
+### Support Code Redemption (post_support.py)
+
+The `post_support.py` script allows you to redeem gift codes on the Pokemon TCG Pocket website through API calls.
+
+```bash
+python post_support.py --support "SUPPORT_ID" --keyword "REDEMPTION_CODE"
+```
+
+Or with short options:
+
+```bash
+python post_support.py -s "SUPPORT_ID" -k "REDEMPTION_CODE"
+```
+
+This script sends a POST request to the Pokemon TCG Pocket gift redemption API with your support ID and redemption code. It then displays the status code and response from the server.
+
+#### Parameters:
+- `--support` or `-s`: Your support ID (required)
+- `--keyword` or `-k`: The redemption code (required)
+
+#### Requirements:
+- requests library (`pip install requests`)
+
