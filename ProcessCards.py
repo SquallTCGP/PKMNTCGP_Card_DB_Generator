@@ -280,6 +280,7 @@ def process_set(set_name):
 
             card_data = online_cards[best_match_url]
             pack_url = card_data["pack_url"]
+            image_url = card_data["image_url"]  # Retrieve the image URL from the matched card
             
             # For promo cards, we don't need to check pack specificity
             if is_promo:
@@ -302,7 +303,8 @@ def process_set(set_name):
                 "card_trade_desirability": False,
                 "card_tradable": False if is_promo or set_name == CURRENT_SET else (card_rarity not in [6, 7, 8, 9, 10, 11, 12]),
                 "card_obtainable": False if is_promo else (card_rarity not in [8, 9, 10, 11, 12]),
-                "card_owned": False
+                "card_owned": False,
+                "card_image_url": image_url
             }
 
             # Add to appropriate dictionary
