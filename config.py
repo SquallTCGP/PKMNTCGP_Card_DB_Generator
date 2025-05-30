@@ -29,7 +29,7 @@ Configuration Components:
 """
 
 # Current newest set (cards from this set cannot be traded)
-CURRENT_SET = "Celestial Guardians"
+CURRENT_SET = "Extradimensional Crisis"
 
 # Pack configurations for main sets
 PACK_CONFIGS = {
@@ -66,6 +66,7 @@ SET_NAME_TO_EXPANSION_ID = {
     "Triumphant Light": "a2a",
     "Shining Revelry": "a2b",
     "Celestial Guardians": "a3",
+    "Extradimensional Crisis": "a3a"
 }
 
 # Rarity Mapping
